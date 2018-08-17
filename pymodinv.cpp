@@ -6,13 +6,15 @@ static PyNumberMethods *nb = PyLong_Type.tp_as_number;
 
 typedef struct {PyObject *g; PyObject *y; PyObject *x;} struct_gyx;
 
+static PyObject * Py0 = PyLong_FromLong(0);
+static PyObject * Py1 = PyLong_FromLong(1);
 static struct_gyx egcd(PyObject *a, PyObject *b) {
     int ovr = 1;
 
     struct_gyx rval;
 
     /// if a == 0
-    if (0 == PyLong_AsLongAndOverflow(a, &ovr) and not ovr) {
+    if (!PyLong_Type.tp_compare(Py0, a)) {
         Py_INCREF(b);
         rval.g = b;
         rval.y = PyLong_FromLong(0);
@@ -63,8 +65,7 @@ static PyObject* pymodinv_modinv(PyObject *self, PyObject *args) {
 
     struct_gyx ret = egcd(a, m);
 
-    int ovr = 1;
-    if (1 != PyLong_AsLongAndOverflow(ret.g, &ovr) or ovr)
+    if (PyLong_Type.tp_compare(Py1, ret.g))
         PyErr_SetString(PyExc_ValueError, "modular invese does not exist");
 
     PyObject *res = nb->nb_remainder(ret.y, m);
