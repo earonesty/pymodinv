@@ -9,12 +9,14 @@ typedef struct {PyObject *g; PyObject *y; PyObject *x;} struct_gyx;
 static PyObject * Py0 = PyLong_FromLong(0);
 static PyObject * Py1 = PyLong_FromLong(1);
 static struct_gyx egcd(PyObject *a, PyObject *b) {
-    int ovr = 1;
-
     struct_gyx rval;
 
     /// if a == 0
+#if PY_MAJOR_VERSION <=2
     if (!PyLong_Type.tp_compare(Py0, a)) {
+#else
+    if (PyLong_Type.tp_richcompare(Py0, a, Py_EQ) == Py_True) {
+#endif
         Py_INCREF(b);
         rval.g = b;
         rval.y = PyLong_FromLong(0);
@@ -65,8 +67,14 @@ static PyObject* pymodinv_modinv(PyObject *self, PyObject *args) {
 
     struct_gyx ret = egcd(a, m);
 
-    if (PyLong_Type.tp_compare(Py1, ret.g))
+#if PY_MAJOR_VERSION <=2
+    if (PyLong_Type.tp_compare(Py1, ret.g)) {
+#else
+    if (PyLong_Type.tp_richcompare(Py1, ret.g, Py_EQ) != Py_True) {
+#endif
         PyErr_SetString(PyExc_ValueError, "modular invese does not exist");
+        return NULL;
+    }
 
     PyObject *res = nb->nb_remainder(ret.y, m);
 

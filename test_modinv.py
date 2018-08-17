@@ -35,7 +35,7 @@ class TestModinv(TestCase):
         for a in range(2,1000):
             x=py_modinv(a,m)
             y=modinv(a,m)
-            assert x==y, "{} : {} != {}".format(tup, x, y)
+            assert x==y, "{} : {} != {}".format((a,m), x, y)
 
     def test_time(self):
         m=7037571432493595415108103882256535264262010653258424750253951044516996045672112478562470086435516573756877408682623837202766124762593008963348753173298617
