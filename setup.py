@@ -10,8 +10,8 @@ setup(
     version='0.2.0',
     description='Fast modular inverse for python integers',
     author=u'Erik Aronesty',
-    author_email='erik@getvida.io',
-    url='https://github.com/vidaid/pymodinv',
+    author_email='erik@q32.com',
+    url='https://github.com/earonesty/pymodinv',
     license='MIT',
     ext_modules=[Extension('pymodinv', ['pymodinv.cpp'])],
 )

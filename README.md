@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.com/VidaID/pymodinv.svg?branch=master)](https://travis-ci.com/VidaID/pymodinv)
+[![Build Status](https://travis-ci.com/earonesty/pymodinv.svg?branch=master)](https://travis-ci.com/earonesty/pymodinv)
 
 ## Install:
 
-    pip install git+https://github.com/VidaID/pymodinv.git  
+    pip install git+https://github.com/earonesty/pymodinv.git  
 
 ## Use:
 
