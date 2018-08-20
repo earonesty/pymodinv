@@ -50,12 +50,10 @@ static PyObject* pymodinv_modinv(PyObject *self, PyObject *args) {
     #if PY_MAJOR_VERSION <= 2
         if (PyInt_Check(a)) {
             long ia = PyInt_AS_LONG(a);
-            Py_DECREF(a);
             a=PyLong_FromLong(ia);
         }
         if (PyInt_Check(m)) {
             long im = PyInt_AS_LONG(m);
-            Py_DECREF(m);
             m=PyLong_FromLong(im);
         }
     #endif
