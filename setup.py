@@ -7,7 +7,7 @@ except ImportError:
 
 setup(
     name='pymodinv',
-    version='0.2.0',
+    version='0.2.1',
     description='Fast modular inverse for python integers',
     author=u'Erik Aronesty',
     author_email='erik@q32.com',
