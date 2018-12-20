@@ -6,7 +6,7 @@
 
 ## Use:
 
-Python already has fast powmod, here's a modular inverse that's twice as fast as doing it in python straight.   Will add other functions if someone wants them.
+Python already has fast powmod, here's a modular inverse that's twice as fast as doing it in python straight. 
 
     from pymodinv import modinv
     
